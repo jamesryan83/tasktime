@@ -156,7 +156,7 @@ app.tasklist.createTaskListItem = function() {
         // clear create task input
         $("#inputTaskText").val("");
 
-        app.tasklist.refreshPage(false);
+        app.tasklist.refreshPage(false); 
     });
 }
 
@@ -280,8 +280,6 @@ app.tasklist.refreshPage = function (refreshTimeline) {
 
 // Set currently selected timeline item
 app.tasklist.setSelectdTimelineItem = function (element) {
-
-    console.log(element)
 
     // find element if not provided
     if (!element) {

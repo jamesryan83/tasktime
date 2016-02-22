@@ -100,15 +100,18 @@ app.db.deleteTaskListItem = function (taskListItemId, callback) {
 
 // Generic ajax function
 app.db.makeAjaxCall = function (method, url, data, callback) {
+    app.ajaxStart();
     $.ajax({
         method: method,
         url: url,
         data: data,
         success: function (data) {
             callback({ success: true, data: data });
+            app.ajaxStop();
         },
-        error: function (error) {            
+        error: function (error) {
             callback({ success: false, data: error });
+            app.ajaxStop();
         }
     });
 }

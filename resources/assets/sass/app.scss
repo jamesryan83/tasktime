@@ -47,12 +47,9 @@ input:-webkit-autofill {
         font-size: 1.7em;
     }
 
-    #labelLoading {
+    #imgLoading {
         display: none;
-        color: white;
-        margin-left: 30px;
-        line-height: $navBarHeight;
-        font-weight: 200;
+        margin-top: 11px;
     }
 }
 

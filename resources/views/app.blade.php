@@ -40,7 +40,7 @@
                 <!-- Title -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{ url('/') }}">Tasktime</a>
-                    <label id="labelLoading">Please Wait...</label>
+                    <img id="imgLoading" src="res/loading.gif" width="25" />
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

@@ -50,6 +50,15 @@ app.ajaxError = function (err) {
 
 
 
+app.ajaxStart = function () {
+    $("#imgLoading").show();
+}
+
+
+app.ajaxStop = function () {
+    $("#imgLoading").hide();
+}
+
 
 
 // show dialog

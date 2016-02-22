@@ -6041,12 +6041,9 @@ input:-webkit-autofill {
     cursor: pointer; }
   .navbar a.navbar-brand {
     font-size: 1.7em; }
-  .navbar #labelLoading {
+  .navbar #imgLoading {
     display: none;
-    color: white;
-    margin-left: 30px;
-    line-height: 50px;
-    font-weight: 200; }
+    margin-top: 11px; }
 
 #divContentArea {
   overflow: hidden;
