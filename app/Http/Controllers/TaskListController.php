@@ -76,7 +76,7 @@ class TaskListController extends Controller
             ->where("id", $request->timelineItemId)
             ->delete();
 
-        // assume success for now
+        // assume success for now, not super important
         $this->deleteAllTaskListItems($request, false);
 
         echo $success == 1 ? "true" : "false";
@@ -143,6 +143,28 @@ class TaskListController extends Controller
 
         echo $success == 1 ? "true" : "false";
     }
+
+
+
+
+
+    // Create multiple task items
+    public function createMultipleTaskListItem(Request $request)
+    {
+        $items = $request->textArray;
+        foreach ($items as $item)
+        {
+            // TODO : assuming created ok
+            $success = DB::table("tasklist_items")->insert([
+                "timeline_item_id" => $request->timelineItemId,
+                "text" => $item,
+                "completed" => false,
+                "created_at" => $request->time,
+                "updated_at" => $request->time
+            ]);
+        }
+    }
+
 
 
     // Delete All Tasklist Items

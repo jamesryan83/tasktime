@@ -16,6 +16,8 @@
 
         <h2 id="h2Tasks">Tasks</h2>
 
+
+        <!-- create new task -->
         <div id="divTaskInputs">
             <input type="text" id="inputTaskText" class="form-control" autocomplete="off">
 
@@ -29,6 +31,7 @@
                         id="dropdownMenuTasks" data-toggle="dropdown">
                     <span class="caret"></span>
                 </button>
+                
                 <ul id="ulDropdownTasks" class="dropdown-menu dropdown-menu-right">
                     <li><a href="#">Create Multiple Tasks</a></li>
                     <li><a href="#">Delete All Tasks</a></li>
@@ -40,21 +43,18 @@
 
 
 
-
+    <!-- Main content -->
     <div id="divTaskListContent">
+
         <!-- Timeline -->
         <div id="divTimeline">
         </div>
 
-        <div class="arrow"></div>
+        <div class="arrow"></div> <!-- arrow on top of timeline -->
 
         <!-- Tasklist -->
         <div id="divTaskList">
-
-            <!-- Tasklist items -->
-            <div id="divTaskItems">
-            </div>
-
+            <div id="divTaskItems"></div>
         </div>
 
         <div class="clearfix"></div>

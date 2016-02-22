@@ -17,7 +17,7 @@ app.db.createNewTimelineItem = function (callback) {
 }
 
 
-// Get timeline items.  callback optional
+// Get timeline items
 app.db.getTimelineItems = function (callback) {
     app.db.makeAjaxCall("GET", "/timeline-items", null, callback);
 }
@@ -92,12 +92,28 @@ app.db.deleteTaskListItem = function (taskListItemId, callback) {
 }
 
 
+
+
+
+// Create multiple TaskList items
+app.db.createMultipleTaskListItems = function (timelineItemId, textArray, callback) {
+    app.db.makeAjaxCall("POST", "/tasklist-items-multiple", {
+        "timelineItemId": timelineItemId,
+        "textArray": textArray,
+        "time": app.util.getDateForServer()
+    }, callback);
+}
+
+
 // Delete all TaskList items
 app.db.deleteAllTaskListItems = function (timelineItemId, callback) {
     app.db.makeAjaxCall("DELETE", "/tasklist-items-all", {
-        "timelineItemId": 1 // timelineItemId
+        "timelineItemId": timelineItemId
     }, callback);
 }
+
+
+
 
 
 
@@ -107,6 +123,7 @@ app.db.deleteAllTaskListItems = function (timelineItemId, callback) {
 // Generic ajax function
 app.db.makeAjaxCall = function (method, url, data, callback) {
     app.ajaxStart();
+
     $.ajax({
         method: method,
         url: url,

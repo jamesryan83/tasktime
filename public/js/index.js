@@ -54,13 +54,22 @@ app.ajaxStop = function () {
 
 
 // show dialog
-app.showDialog = function(heading, text, hideCancelButton, callback) {
+app.showDialog = function(heading, text, hideCancelButton, showTextArea, callback) {
 
     if (hideCancelButton === true) {
         $("#buttonDialogCancel").hide();
     } else {
         $("#buttonDialogCancel").show();
     }
+
+    if (showTextArea === true) {
+        $("#textareaDialog").show();
+        $("#divDialog").css({ "height": "310px" });
+    } else {
+        $("#textareaDialog").hide();
+        $("#divDialog").css({ "height": "150px" });
+    }
+
 
     $("#h2Dialog").text(heading);
     $("#pDialog").text(text);

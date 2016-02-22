@@ -87,6 +87,11 @@ input:-webkit-autofill {
 
         button {
             margin: 0 20px;
+            width: 100px;
+        }
+
+        textarea {
+            resize: none;
         }
     }
 }

@@ -6072,4 +6072,7 @@ input:-webkit-autofill {
     background-color: white;
     text-align: center; }
     #divDialogBackground #divDialog button {
-      margin: 0 20px; }
+      margin: 0 20px;
+      width: 100px; }
+    #divDialogBackground #divDialog textarea {
+      resize: none; }

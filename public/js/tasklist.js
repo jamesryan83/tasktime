@@ -163,7 +163,7 @@ app.tasklist.deleteTimelineItem = function () {
 
     // ask before deleting
     app.showDialog("Delete Timeline Item",
-        "This will also delete all the tasks for this item", false, function (result) {
+        "This will also delete all the tasks for this item", false, false, function (result) {
 
             // if ok clicked on dialog, delete item
             if (result === true) {
@@ -199,7 +199,7 @@ app.tasklist.createTaskListItem = function() {
 
     // needs to be at least 1 timeline item to save task into
     if ($("#divTimeline").find("li").length === 0) {
-        app.showDialog("Alert", "You need to create a Timeline Item first", true);
+        app.showDialog("Alert", "You need to create a Timeline Item first", true, false);
         return;
     }
 
@@ -211,25 +211,6 @@ app.tasklist.createTaskListItem = function() {
 
         app.tasklist.getTaskListItems();
     });
-}
-
-
-// Create Multiple Tasklist Items
-app.tasklist.createMultipleTaskItems = function () {
-    // ask before deleting
-//    app.showDialog("Delete All Tasks",
-//        "This will delete all Tasks on the selected Timeline Item", false, function (result) {
-//
-//            // if ok clicked on dialog, delete items
-//            if (result === true) {
-//                app.db.deleteAllTaskItems(app.selectedTimelineItemId, function (result) {
-//                    if (result.success === false) { app.ajaxError(result.data); return; }
-//
-//                    $("#divTaskItems").empty();
-//                });
-//            }
-//        }
-//    );
 }
 
 
@@ -324,6 +305,49 @@ app.tasklist.deleteTaskListItem = function (itemId) {
 }
 
 
+
+
+
+// Create Multiple Tasklist Items
+app.tasklist.createMultipleTaskItems = function () {
+    $("#textareaDialog").val("");
+
+    if ($("#divTimeline").find("li").length === 0) {
+        alert("You need to create a Timeline Item first");
+        return;
+    }
+
+    app.showDialog("Create Multiple Tasks",
+        "Put each Task on a new line", false, true, function (result) {
+
+            // if ok clicked on dialog, delete items
+            if (result === true) {
+
+                // split and remove blank items
+                var items = $("#textareaDialog").val().split("\n");
+                var actualItems = [];
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].trim().length > 0) {
+                        actualItems.push(items[i]);
+                    }
+                }
+
+                if (actualItems.length > 0) {
+                    app.db.createMultipleTaskListItems(app.selectedTimelineItemId,
+                            actualItems, function () {
+                        if (result.success === false) { app.ajaxError(result.data); return; }
+
+                        app.tasklist.getTaskListItems();
+                    })
+                } else {
+                    alert("No Items in Textbox");
+                }
+            }
+        }
+    );
+}
+
+
 // Delete All Tasklist Items
 app.tasklist.deleteAllTaskItems = function () {
 
@@ -333,8 +357,8 @@ app.tasklist.deleteAllTaskItems = function () {
     }
 
     // ask before deleting
-    app.showDialog("Delete All Tasks",
-        "This will delete all Tasks on the selected Timeline Item", false, function (result) {
+    app.showDialog("Delete All Tasks", "This will delete all Tasks on the selected Timeline Item",
+                   false, false, function (result) {
 
             // if ok clicked on dialog, delete items
             if (result === true) {

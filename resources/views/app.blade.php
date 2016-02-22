@@ -77,6 +77,7 @@
             <div id="divDialog">
                 <h2 id="h2Dialog"></h2>
                 <p id="pDialog"></p>
+                <textarea id="textareaDialog" rows="8" cols="50"></textarea>
                 <button id="buttonDialogOk" class="btn btn-success">Ok</button>
                 <button id="buttonDialogCancel" class="btn btn-danger">Cancel</button>
             </div>
