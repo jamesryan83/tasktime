@@ -4,6 +4,48 @@ var app = app || {};
 app.tasklist = {};
 
 
+// setup
+app.tasklist.setup = function () {
+
+    app.tasklist.getTimelineItems();
+
+    // new timeline item
+    $("#buttonNewTimelineItem").click(function () {
+        app.tasklist.createNewTimelineItem();
+    })
+
+
+    // new task item input
+    $("#inputTaskText").keydown(function (e) {
+        if (e.which == 13) {  // enter
+            e.preventDefault();
+            app.tasklist.createTaskListItem()
+        }
+    });
+
+
+    // new task item button
+    $("#buttonAddTaskItem").click(function () {
+        app.tasklist.createTaskListItem();
+    });
+
+
+    // task dropdown list
+    $("#ulDropdownTasks li > a").click(function (e) {
+        if (this.innerHTML === "Create Multiple Tasks") {
+            app.tasklist.createMultipleTaskItems();
+        } else if (this.innerHTML === "Delete All Tasks") {
+            app.tasklist.deleteAllTaskItems();
+        }
+    });
+}
+
+
+
+
+
+
+
 // *************************** Timeline Items ***************************
 
 
@@ -12,7 +54,9 @@ app.tasklist.createNewTimelineItem = function () {
     app.db.createNewTimelineItem(function (result) {
         if (result.success === false) { app.ajaxError(result.data); return; }
 
-        app.tasklist.getTimelineItems();
+        app.tasklist.getTimelineItems(function () {
+            app.tasklist.setSelectdTimelineItem($("#divTimeline").find("li")[0]);
+        });
     });
 }
 
@@ -43,6 +87,12 @@ app.tasklist.getTimelineItems = function (callback) {
 
         // add items to timeline
         $("#divTimeline").loadTemplate($("#templateTimelineItem"), timelineItems);
+
+
+        // timeline item clicked
+        $("#divTimeline").find("li").click(function () {
+            app.tasklist.setSelectdTimelineItem(this);
+        });
 
 
         // add keydown event to contenteditable elements
@@ -164,6 +214,25 @@ app.tasklist.createTaskListItem = function() {
 }
 
 
+// Create Multiple Tasklist Items
+app.tasklist.createMultipleTaskItems = function () {
+    // ask before deleting
+//    app.showDialog("Delete All Tasks",
+//        "This will delete all Tasks on the selected Timeline Item", false, function (result) {
+//
+//            // if ok clicked on dialog, delete items
+//            if (result === true) {
+//                app.db.deleteAllTaskItems(app.selectedTimelineItemId, function (result) {
+//                    if (result.success === false) { app.ajaxError(result.data); return; }
+//
+//                    $("#divTaskItems").empty();
+//                });
+//            }
+//        }
+//    );
+}
+
+
 
 // Get TaskList items
 app.tasklist.getTaskListItems = function () {
@@ -221,6 +290,13 @@ app.tasklist.getTaskListItems = function () {
             var data = app.tasklist.getTaskListItemData(e.currentTarget.id);
             app.tasklist.updateTaskListItem(data.itemId, data.text, data.checked);
         });
+
+
+        // delete icon click event
+        $("#divTaskItems").find("i.delete").click(function (e) {
+            e.stopPropagation();
+            app.tasklist.deleteTaskListItem(this.id);
+        });
     });
 }
 
@@ -248,7 +324,29 @@ app.tasklist.deleteTaskListItem = function (itemId) {
 }
 
 
+// Delete All Tasklist Items
+app.tasklist.deleteAllTaskItems = function () {
 
+    if ($("#divTimeline").find("li").length === 0) {
+        alert("Nothing to delete");
+        return;
+    }
+
+    // ask before deleting
+    app.showDialog("Delete All Tasks",
+        "This will delete all Tasks on the selected Timeline Item", false, function (result) {
+
+            // if ok clicked on dialog, delete items
+            if (result === true) {
+                app.db.deleteAllTaskListItems(app.selectedTimelineItemId, function (result) {
+                    if (result.success === false) { app.ajaxError(result.data); return; }
+
+                    $("#divTaskItems").empty();
+                });
+            }
+        }
+    );
+}
 
 
 
@@ -268,6 +366,8 @@ app.tasklist.deleteTaskListItem = function (itemId) {
 
 // Set currently selected timeline item
 app.tasklist.setSelectdTimelineItem = function (element) {
+
+    $("#divTaskItems").empty();
 
     // find element if not provided
     if (!element) {

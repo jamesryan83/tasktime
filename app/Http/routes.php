@@ -17,4 +17,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/tasklist-items', "TaskListController@getTaskListItems");
     Route::put('/tasklist-items', "TaskListController@updateTaskListItem");
     Route::delete('/tasklist-items', "TaskListController@deleteTaskListItem");
+
+    Route::delete('/tasklist-items-all', "TaskListController@deleteAllTaskListItems");
 });

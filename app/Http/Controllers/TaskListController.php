@@ -30,7 +30,7 @@ class TaskListController extends Controller
     // Create Timeline item
     public function createTimelineItem(Request $request)
     {
-        DB::table("timeline_items")->insert([
+        $success = DB::table("timeline_items")->insert([
             "user" => Auth::User()->id,
             "title" => "My Tasks",
             "text" => "",
@@ -38,6 +38,8 @@ class TaskListController extends Controller
             "created_at" => $request->time,
             "updated_at" => $request->time
         ]);
+
+        echo $success == 1 ? "true" : "false";
     }
 
 
@@ -55,24 +57,29 @@ class TaskListController extends Controller
     // Update Timeline item
     public function updateTimelineItem(Request $request)
     {
-        DB::table("timeline_items")->where("id", $request->timelineItemId)->update([
-            "title" => $request->title,
-            "text" => $request->text,
-            "updated_at" => $request->time
+        $success = DB::table("timeline_items")
+            ->where("id", $request->timelineItemId)
+            ->update([
+                "title" => $request->title,
+                "text" => $request->text,
+                "updated_at" => $request->time
         ]);
+
+        echo $success == 1 ? "true" : "false";
     }
 
 
     // Delete Timeline item
     public function deleteTimelineItem(Request $request)
     {
-        DB::table("timeline_items")->delete([
-            "id" => $request->timelineItemId
-        ]);
+        $success = DB::table("timeline_items")
+            ->where("id", $request->timelineItemId)
+            ->delete();
 
-        DB::table("tasklist_items")->delete([
-            "timeline_item_id" => $request->timelineItemId
-        ]);
+        // assume success for now
+        $this->deleteAllTaskListItems($request, false);
+
+        echo $success == 1 ? "true" : "false";
     }
 
 
@@ -87,14 +94,15 @@ class TaskListController extends Controller
     // Create Tasklist item
     public function createTaskListItem(Request $request)
     {
-        // create task item
-        DB::table("tasklist_items")->insert([
+        $success = DB::table("tasklist_items")->insert([
             "timeline_item_id" => $request->timelineItemId,
             "text" => $request->text,
             "completed" => false,
             "created_at" => $request->time,
             "updated_at" => $request->time
         ]);
+
+        echo $success == 1 ? "true" : "false";
     }
 
 
@@ -113,7 +121,7 @@ class TaskListController extends Controller
     // Update Tasklist item
     public function updateTaskListItem(Request $request)
     {
-        DB::table("tasklist_items")->where([
+        $success = DB::table("tasklist_items")->where([
                 ["timeline_item_id", $request->timelineItemId],
                 ["id", $request->taskListItemId]
             ])->update([
@@ -121,14 +129,35 @@ class TaskListController extends Controller
                 "completed" => $request->checked,
                 "updated_at" => $request->time
         ]);
+
+        echo $success == 1 ? "true" : "false";
     }
 
 
     // Delete Tasklist item
     public function deleteTaskListItem(Request $request)
     {
-        $temp = DB::table("tasklist_items")->delete([
-            "id" => $request->taskListItemId
-        ]);
+        $success = DB::table("tasklist_items")
+            ->where("id", $request->taskListItemId)
+            ->delete();
+
+        echo $success == 1 ? "true" : "false";
+    }
+
+
+    // Delete All Tasklist Items
+    public function deleteAllTaskListItems(Request $request, $echoResult = true)
+    {
+        $success = DB::table("tasklist_items")
+            ->where("timeline_item_id", $request->timelineItemId)
+            ->delete();
+
+        if ($echoResult === true)
+        {
+            echo $success == 1 ? "true" : "false";
+        } else
+        {
+            return $success == 1 ? "true" : "false";
+        }
     }
 }

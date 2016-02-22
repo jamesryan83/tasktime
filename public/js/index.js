@@ -11,15 +11,7 @@ window.onload = function () {
 
     // tasklist page
     if (window.location.pathname === "/tasklist") {
-        app.tasklist.getTimelineItems();
-
-        // create tasklist item when enter pressed on inputTaskText input
-        $("#inputTaskText").keydown(function (e) {
-            if (e.which == 13) {
-                e.preventDefault();
-                app.tasklist.createTaskListItem()
-            }
-        });
+        app.tasklist.setup();
     }
 }
 
@@ -74,11 +66,13 @@ app.showDialog = function(heading, text, hideCancelButton, callback) {
     $("#pDialog").text(text);
     $("#divDialogBackground").show();
 
+    $("#buttonDialogOk").off();
     $("#buttonDialogOk").click(function () {
         $("#divDialogBackground").hide();
         if (callback) callback(true);
     });
 
+    $("#buttonDialogCancel").off();
     $("#buttonDialogCancel").click(function () {
         $("#divDialogBackground").hide();
         if (callback) callback(false);

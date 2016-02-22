@@ -92,6 +92,12 @@ app.db.deleteTaskListItem = function (taskListItemId, callback) {
 }
 
 
+// Delete all TaskList items
+app.db.deleteAllTaskListItems = function (timelineItemId, callback) {
+    app.db.makeAjaxCall("DELETE", "/tasklist-items-all", {
+        "timelineItemId": 1 // timelineItemId
+    }, callback);
+}
 
 
 
@@ -106,7 +112,14 @@ app.db.makeAjaxCall = function (method, url, data, callback) {
         url: url,
         data: data,
         success: function (data) {
-            callback({ success: true, data: data });
+            //console.log(url + " : " + method + " : " + data)
+
+            if (data === "false") {
+                callback({ success: false, data: error });
+            } else {
+                callback({ success: true, data: data });
+            }
+
             app.ajaxStop();
         },
         error: function (error) {

@@ -9,18 +9,17 @@
 
         <h2>Timeline</h2>
 
-        <button id="buttonNewTimelineItem" class="btn btn-default" title="Create a new Timeline Item"
-                onclick="app.tasklist.createNewTimelineItem()">
+        <button id="buttonNewTimelineItem" class="btn btn-default"
+                title="Create a new Timeline Item">
             <i class="fa fa-plus"></i>New</button>
 
 
         <h2 id="h2Tasks">Tasks</h2>
 
         <div id="divTaskInputs">
-            <input type="text" id="inputTaskText"
-                   class="form-control" autocomplete="off">
+            <input type="text" id="inputTaskText" class="form-control" autocomplete="off">
 
-            <button class="btn btn-default" onclick="app.tasklist.createTaskListItem()"
+            <button id="buttonAddTaskItem" class="btn btn-default"
                     title="Add a new Task to the selected Timeline Item">
                 <i class="fa fa-plus"></i> Add Task
             </button>
@@ -30,10 +29,9 @@
                         id="dropdownMenuTasks" data-toggle="dropdown">
                     <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-right">
+                <ul id="ulDropdownTasks" class="dropdown-menu dropdown-menu-right">
                     <li><a href="#">Create Multiple Tasks</a></li>
-                    <li><a href="#">Import Tasks</a></li>
-                    <li><a href="#">Delete all Tasks</a></li>
+                    <li><a href="#">Delete All Tasks</a></li>
                 </ul>
             </div>
         </div>
@@ -69,7 +67,7 @@
     <!-- timeline item template -->
     <!-- modified version of - http://bootsnipp.com/snippets/featured/timeline-responsive -->
     <script type="text/html" id="templateTimelineItem">
-        <li data-id="id" onclick="app.tasklist.setSelectdTimelineItem(this)">
+        <li data-id="id">
 
             <div class="timeline-badge">
                 <i class="glyphicon glyphicon-align-left"></i>
@@ -106,8 +104,7 @@
                 <label contenteditable="true" data-content="text" data-id="id"></label>
             </div>
             <div class="elementRight">
-                <i class="glyphicon glyphicon-remove delete" data-id="id"
-                    onclick="app.tasklist.deleteTaskListItem(this.id)"></i>
+                <i class="glyphicon glyphicon-remove delete" data-id="id"></i>
             </div>
             <div class="clearfix"></div>
         </div>
