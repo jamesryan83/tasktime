@@ -49,12 +49,12 @@ app.ajaxError = function (err) {
 }
 
 
-
+// ajax started
 app.ajaxStart = function () {
     $("#imgLoading").show();
 }
 
-
+// ajax finished
 app.ajaxStop = function () {
     $("#imgLoading").hide();
 }

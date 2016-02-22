@@ -12,8 +12,7 @@ app.tasklist.createNewTimelineItem = function () {
     app.db.createNewTimelineItem(function (result) {
         if (result.success === false) { app.ajaxError(result.data); return; }
 
-        app.tasklist.refreshPage();
-        //app.tasklist.setSelectdTimelineItem($("#divTimeline").find("li:first")[0]);
+        app.tasklist.getTimelineItems();
     });
 }
 
@@ -28,7 +27,11 @@ app.tasklist.getTimelineItems = function (callback) {
         var timelineItems = JSON.parse(result.data);
 
         // clear screen and return if no items
-        if (timelineItems.length === 0) return;
+        if (timelineItems.length === 0) {
+            $("#divTimeline").empty();
+            $("#divTaskItems").empty();
+            return;
+        }
 
 
         // change date format
@@ -99,7 +102,7 @@ app.tasklist.updateTimelineItem = function (type, text) {
     app.db.updateTimelineItem(data.itemId, data.title, data.text, function (result) {
         if (result.success === false) { app.ajaxError(result.data); return; }
 
-        app.tasklist.refreshPage();
+        app.tasklist.getTimelineItems();
     });
 }
 
@@ -117,7 +120,7 @@ app.tasklist.deleteTimelineItem = function () {
                 app.db.deleteTimelineItem(app.selectedTimelineItemId, function (result) {
                     if (result.success === false) { app.ajaxError(result.data); return; }
 
-                    app.tasklist.refreshPage();
+                    app.tasklist.getTimelineItems();
                 });
             }
         }
@@ -156,7 +159,7 @@ app.tasklist.createTaskListItem = function() {
         // clear create task input
         $("#inputTaskText").val("");
 
-        app.tasklist.refreshPage(false); 
+        app.tasklist.getTaskListItems();
     });
 }
 
@@ -229,7 +232,7 @@ app.tasklist.updateTaskListItem = function (itemId, text, checked) {
         function (result) {
             if (result.success === false) { app.ajaxError(result.data); return; }
 
-            app.tasklist.refreshPage(false);
+            app.tasklist.getTaskListItems();
     });
 }
 
@@ -240,7 +243,7 @@ app.tasklist.deleteTaskListItem = function (itemId) {
     app.db.deleteTaskListItem(itemId, function (result) {
         if (result.success === false) { app.ajaxError(result.data); return; }
 
-        app.tasklist.refreshPage(false);
+        app.tasklist.getTaskListItems();
     });
 }
 
@@ -261,21 +264,6 @@ app.tasklist.deleteTaskListItem = function (itemId) {
 
 
 // *************************** Other things ***************************
-
-
-// reload timeline items and current task list
-app.tasklist.refreshPage = function (refreshTimeline) {
-    app.db.getTimelineItems(function (result) {
-        if (result.success === false) { app.ajaxError(result.data); return; }
-
-        if (refreshTimeline !== false) $("#divTimeline").empty();
-        $("#divTaskItems").empty();
-
-        if (JSON.parse(result.data).length === 0) return;
-
-        app.tasklist.getTimelineItems();
-    });
-}
 
 
 // Set currently selected timeline item
