@@ -24,6 +24,18 @@
                     title="Add a new Task to the selected Timeline Item">
                 <i class="fa fa-plus"></i> Add Task
             </button>
+
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button"
+                        id="dropdownMenuTasks" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Create Multiple Tasks</a></li>
+                    <li><a href="#">Import Tasks</a></li>
+                    <li><a href="#">Delete all Tasks</a></li>
+                </ul>
+            </div>
         </div>
 
     </div>
