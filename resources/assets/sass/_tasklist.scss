@@ -1,0 +1,165 @@
+$divTimelineWidth: 410px;
+$headingsHeight: 50px;
+
+#divTaskListMain {
+    height: 100%;
+    width: 1200px;
+    text-align: left;
+    display: inline-block;
+    padding: 30px 0;
+
+    button > i {
+        margin-right: 10px;
+    }
+
+
+    // headings
+    #divTaskListHeadings {
+        height: $headingsHeight;
+        line-height: $headingsHeight;
+        position: relative;
+
+        > * {
+            position: relative;
+        }
+
+        h2 {
+            vertical-align: middle;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+
+        #buttonNewTimelineItem {
+            left: 110px;
+        }
+
+        #h2Tasks {
+            left: 250px;
+        }
+
+
+        // create new task inputs
+        #divTaskInputs {
+            display: inline-block;
+            float: right;
+
+            > * {
+                display: inline-block;
+            }
+
+            input {
+                margin: 0 15px;
+                width: 400px !important;
+            }
+
+            button {
+                margin-top: -2px;
+            }
+        }
+
+    }
+
+
+    // content
+    #divTaskListContent {
+        height: calc(100% - #{$headingsHeight});
+        position: relative;
+
+        // timeline
+        #divTimeline {
+            overflow-y: auto;
+            width: $divTimelineWidth;
+            float: left;
+            height: 100%;
+        }
+
+        // arrow on timeline line
+        .arrow {
+            position: absolute;
+            top: -10px;
+            left: 340px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid #eeeeee;
+        }
+
+
+        // task list
+        #divTaskList {
+            padding-top: 20px;
+            width: calc(100% - #{$divTimelineWidth} - 30px);
+            margin-left: 30px;
+            float: right;
+            height: 100%;
+            text-align: center;
+
+
+            // task items list
+            #divTaskItems {
+                box-sizing: border-box;
+                position: relative;
+                overflow-y: auto;
+
+
+
+                // single task list item
+                .divTaskListItem {
+                    position: relative;
+                    padding-top: 20px;
+                    width: 100%;
+
+                    .elementLeft, .elementRight {
+                        width: 50px;
+                        text-align: center;
+                    }
+
+                    // checkbox
+                    .elementLeft {
+                        float: left;
+                        margin-top: -2px;
+
+                        input[type="checkbox"] {
+                            outline: none;
+                        }
+                    }
+
+                    // text
+                    .elementMiddle {
+                        width: calc(100% - 100px);
+                        float: left;
+                        text-align: left;
+
+                        label {
+                            margin: -3px 0 0 0;
+                            outline: none;
+
+                            &:hover {
+                                color: $highlightColor;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    // delete
+                    .elementRight {
+                        float: right;
+
+                        .delete {
+
+                            &:hover {
+                                color: red;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+
+}

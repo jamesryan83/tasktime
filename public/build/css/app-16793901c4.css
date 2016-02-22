@@ -1,0 +1,68 @@
+#divIndex > div {
+  margin: 20px; }
+
+#divIndex #divDetails {
+  background-color: purple;
+  position: relative; }
+  #divIndex #divDetails #divInput {
+    background-color: aqua;
+    float: left; }
+    #divIndex #divDetails #divInput #divInputContainer {
+      display: inline-block;
+      margin: 0 10px; }
+      #divIndex #divDetails #divInput #divInputContainer input {
+        outline: none; }
+    #divIndex #divDetails #divInput #spanError {
+      display: none;
+      color: red; }
+    #divIndex #divDetails #divInput button {
+      margin: 0 10px;
+      padding: 5px 15px;
+      background-color: #529aef;
+      border-radius: 3px;
+      border: 1px solid transparent;
+      outline: none;
+      cursor: pointer; }
+      #divIndex #divDetails #divInput button:hover {
+        border: 1px solid blue; }
+  #divIndex #divDetails #divCompany {
+    float: right; }
+
+#divIndex #divChartContainer {
+  clear: both;
+  width: 100%;
+  background-color: green; }
+  #divIndex #divChartContainer #chart {
+    background-color: blue;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    height: 500px;
+    width: 960px; }
+    #divIndex #divChartContainer #chart svg {
+      font: 10px sans-serif; }
+    #divIndex #divChartContainer #chart .area {
+      fill: rgba(120, 187, 242, 0.62);
+      -webkit-clip-path: url(#clip);
+      clip-path: url(#clip); }
+    #divIndex #divChartContainer #chart .axis path,
+    #divIndex #divChartContainer #chart .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges; }
+    #divIndex #divChartContainer #chart .brush .extent {
+      stroke: #fff;
+      fill-opacity: .125;
+      shape-rendering: crispEdges; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  width: 100%; }
+
+/*# sourceMappingURL=app.css.map */

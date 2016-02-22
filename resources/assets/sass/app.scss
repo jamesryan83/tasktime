@@ -1,0 +1,96 @@
+$navBarHeight: 50px;
+$highlightColor: #64b7ff;
+$navBarColor: #1897FF;
+
+
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+@import "index";
+@import "tasklist";
+@import "timeline";
+@import "help";
+@import "loginRegister";
+
+
+
+// general stuff
+
+html, body {
+    height: 100%;
+    width: 100%;
+    min-width: 1200px !important;
+}
+
+// hide chrome yellow background on inputs
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+
+
+
+// navbar
+.navbar {
+    height: $navBarHeight;
+    background-color: $navBarColor !important;
+    border: 0 !important;
+    border-radius: 0;
+    margin-bottom: 0 !important;
+
+    a {
+        color: white !important;
+        font-size: 1.1em;
+        cursor: pointer;
+    }
+
+    a.navbar-brand {
+        font-size: 1.7em;
+    }
+
+    #labelLoading {
+        display: none;
+        color: white;
+        margin-left: 30px;
+        line-height: $navBarHeight;
+        font-weight: 200;
+    }
+}
+
+
+// main content div
+#divContentArea {
+    overflow: hidden;
+    text-align: center;
+    height: calc(100% - #{$navBarHeight});
+}
+
+
+// dialog
+#divDialogBackground {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    pointer-events: all;
+
+    #divDialog {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 11000;
+        height: 150px;
+        width: 400px;
+        background-color: white;
+        text-align: center;
+
+        button {
+            margin: 0 20px;
+        }
+    }
+}
+

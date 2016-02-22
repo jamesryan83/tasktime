@@ -1,0 +1,13 @@
+#divLogin, #divRegister {
+    text-align: left;
+    padding-top: 50px;
+
+    .panel-default {
+        border: 1px solid $highlightColor;
+    }
+
+    .panel-heading {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+}

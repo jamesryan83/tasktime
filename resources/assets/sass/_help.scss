@@ -1,0 +1,43 @@
+// help
+#divHelpBackground {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    pointer-events: all;
+
+
+    #divHelp {
+        position: absolute;
+        z-index: 11000;
+        margin: 50px;
+        height: calc(100% - 100px);
+        width: calc(100% - 100px);
+        background-color: white;
+        text-align: center;
+        //overflow: hidden;
+
+        #buttonDialogOk {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        #divHelpImage {
+            overflow-y: auto;
+            height: 100%;
+
+            h1 {
+                margin: 10px 0;
+            }
+
+            img {
+                padding: 30px 0;
+            }
+        }
+    }
+}

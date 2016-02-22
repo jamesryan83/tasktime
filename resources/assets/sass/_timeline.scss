@@ -1,0 +1,167 @@
+
+
+#divTimeline {
+    list-style: none;
+    padding: 20px 0 20px 0;
+    position: relative;
+
+
+    // timeline line
+    &:before {
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 3px;
+        background-color: #eeeeee;
+        left: 350px;
+        margin-left: -1.5px;
+    }
+
+
+    // timeline row
+    > li {
+        margin-bottom: 20px;
+        position: relative;
+
+        &:before, &:after {
+            content: " ";
+            display: table;
+        }
+
+        &:after {
+            clear: both;
+        }
+
+
+        // each timeline item
+        > .timeline-panel {
+            width: 300px;
+            float: left;
+            border: 1px solid #d4d4d4;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+            -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+
+            .timeline-title {
+                margin-top: 0;
+                color: inherit;
+                outline: none;
+
+                &:hover {
+                    color: $highlightColor;
+                }
+            }
+
+            .timeline-body > p, .timeline-body > ul {
+                margin-bottom: 0;
+                outline: none;
+            }
+
+            .timeline-body > p {
+                margin-top: 5px;
+                outline: none;
+
+                &:hover {
+                    color: $highlightColor;
+                }
+            }
+
+
+            &:before {
+                position: absolute;
+                top: 26px;
+                right: -15px;
+                display: inline-block;
+                border-top: 15px solid transparent;
+                border-left: 15px solid #ccc;
+                border-right: 0 solid #ccc;
+                border-bottom: 15px solid transparent;
+                content: " ";
+            }
+
+            &:after {
+                position: absolute;
+                top: 27px;
+                right: -14px;
+                display: inline-block;
+                border-top: 14px solid transparent;
+                border-left: 14px solid #fff;
+                border-right: 0 solid #fff;
+                border-bottom: 14px solid transparent;
+                content: " ";
+            }
+
+            &:hover {
+                background-color: #f0f0f0;
+                cursor: pointer;
+
+                &:before {
+                    border-left: 14px solid #f0f0f0;
+                    border-right: 0 solid #f0f0f0;
+                }
+
+                &:after {
+                    border-left: 14px solid #f0f0f0;
+                    border-right: 0 solid #f0f0f0;
+                }
+            }
+
+            .delete {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+
+                &:hover {
+                    color: red;
+                }
+            }
+        }
+
+        // circle on timeline line
+        .timeline-badge {
+            position: relative;
+            display: inline-block;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            font-size: 1.4em;
+            text-align: center;
+            top: 18px;
+            left: 25px;
+            background-color: #999999;
+            border: 1px solid transparent;
+            z-index: 100;
+            border-top-right-radius: 50%;
+            border-top-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+            cursor: pointer;
+
+            &:hover {
+                border: 1px solid $highlightColor;
+            }
+
+            i {
+                top: 11px;
+            }
+        }
+    }
+
+
+    // selected timeline item
+    .timeline-panel-selected {
+        border: 1px solid $highlightColor !important;
+
+        &:before {
+            border-left: 15px solid $highlightColor !important;
+        }
+
+        &:after {
+            border-left: 14px solid $highlightColor !important;
+        }
+    }
+
+}

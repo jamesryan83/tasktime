@@ -1,0 +1,67 @@
+
+#divIndex {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    overflow-y: auto;
+
+
+    // heading
+    #divHeading {
+        overflow: auto;
+
+        img {
+            margin: 70px 0 20px 0;
+        }
+    }
+
+
+    // buttons
+    #divButtons {
+        button {
+            width: 150px;
+            font-size: 1.2em;
+            margin: 40px;
+        }
+    }
+
+
+    // image
+    #divImage {
+        background-color: #D6F2FF;
+        overflow: auto; // prevent margin collapse
+        padding-top: 30px;
+
+        #divImageText {
+            display: inline-block;
+            //text-align: left;
+
+            p {
+                font-size: 1.2em;
+                font-weight: 400;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        img {
+            display: block;
+            margin: 40px auto;
+            border-radius: 10px;
+            max-width: 1200px !important;
+        }
+    }
+
+
+    // contact
+    #divContact {
+        overflow: auto;
+
+        a {
+            display: block;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 30px 0;
+        }
+    }
+}
