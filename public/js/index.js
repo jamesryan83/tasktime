@@ -28,6 +28,11 @@ app.goToRegisterScreen = function () {
 }
 
 
+// navigate to task screen
+app.goToTaskScreen = function () {
+    window.location.href = "/tasklist";
+}
+
 
 
 // show ajax error

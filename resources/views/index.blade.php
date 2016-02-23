@@ -14,10 +14,17 @@
 
     <!-- Buttons -->
     <div id="divButtons">
+        @if (Auth::guest())
         <button id="buttonLogin" class="btn btn-info"
                 onclick="app.goToLoginScreen()">Login</button>
         <button id="buttonRegister" class="btn btn-success"
                 onclick="app.goToRegisterScreen()">Register</button>
+        @else
+        <button id="buttonLogin" class="btn btn-info"
+                onclick="app.goToTaskScreen()">Login</button>
+        <button id="buttonRegister" class="btn btn-success"
+                onclick="app.goToTaskScreen()">Register</button>
+        @endif
     </div>
 
 

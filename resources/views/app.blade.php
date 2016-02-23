@@ -14,9 +14,9 @@
               rel="stylesheet">
 
         <link href="{{ URL::asset('lib/bootstrap-checkbox/css/checkbox-x.css') }}" rel="stylesheet">
-        <link href="{{ URL::asset(elixir('css/app.css')) }}" rel="stylesheet">
+<!--        <link href="{{ URL::asset(elixir('css/app.css')) }}" rel="stylesheet"> -->
         <link href="{{ URL::asset('favicon.ico') }}" rel="shortcut icon">
-<!--        <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">-->
+        <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
 
 
         <script src="{{ URL::asset('lib/jquery-2.1.4.js') }}"></script>
@@ -39,7 +39,7 @@
 
                 <!-- Title -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ url('/') }}">Tasktime</a>
+                    <a class="navbar-brand" href="{{ url('/') }}"><img src="res/images/tasktime_logo_small.png" height="22" /></a>
                     <img id="imgLoading" src="res/loading.gif" width="25" />
                 </div>
 
